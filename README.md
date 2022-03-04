@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="static/logo.jpg" alt="portospy" width="260px"></a>
+  <img src="static/byship-logo.jpg" alt="byship" width="260px"></a>
   <br>
 </h1>
 
@@ -20,12 +20,12 @@ Simple asynchronous crawler written in python that obtains url's from a specifie
 
 Download the repository locally
 ```sh
-git clone https://github.com/gpiechnik2/globeexplorer.git
+git clone https://github.com/gpiechnik2/byship.git
 ```
 
 Go to the downloaded repository
 ```sh
-cd globeexplorer
+cd byship
 ```
 
 Install the tool locally
@@ -38,7 +38,7 @@ The tool can be run through Docker. Go to the [Docker session](#running-with-doc
 
 # Commands
 ```sh
-globeexplorer --help
+byship --help
 ```
 
 Here are all the flags it supports.
@@ -46,7 +46,6 @@ Here are all the flags it supports.
 | Flag                        | Description                                                                                                               |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | -t, --threads               | Maximum number of threads at once                                                                                         |
-<!-- | -od, --other-domains        | -->
 | -h, --headers               | Custom headers in json file                                                                                               |
 | -o, --output                | Results file name (default results.txt)                                                                                   |
 | -j, --json / -nj, --no-json | Write output in JSON format (false by default)                                                                            |
@@ -58,7 +57,7 @@ Here are all the flags it supports.
 To use the tool, use the following command:
 
 ```console
-
+byship https://example.com
 ```
 
 In the meantime the url file will be generated.
@@ -67,7 +66,7 @@ In the meantime the url file will be generated.
 Build a docker image:
 
 ```
-docker build -t portos -f Dockerfile . 
+docker build -t byship -f Dockerfile . 
 ```
 
 Then get the IMAGE_ID with the `docker images` command and run the tool with it.
@@ -76,3 +75,4 @@ docker run -it IMAGE_ID https://example.com
 ```
 
 # License
+Not included yet
