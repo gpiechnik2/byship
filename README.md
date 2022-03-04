@@ -55,10 +55,24 @@ Here are all the flags it supports.
 | -rt, --read-timeout         | The maximum duration to wait for a chunk of data to be received (for example, a chunk of the response body) (default 10s) |
 
 # Running
+To use the tool, use the following command:
+
 ```console
 
 ```
 
+In the meantime the url file will be generated.
+
 # Running with Docker
+Build a docker image:
+
+```
+docker build -t portos -f Dockerfile . 
+```
+
+Then get the IMAGE_ID with the `docker images` command and run the tool with it.
+```
+docker run -it IMAGE_ID https://example.com
+```
 
 # License
