@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="static/byship-logo.jpg" alt="byship" width="260px"></a>
+  <img src="static/logo.jpg" alt="byship" width="260px"></a>
   <br>
 </h1>
 
