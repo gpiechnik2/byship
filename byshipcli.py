@@ -29,6 +29,9 @@ def cli(url, threads, headers, output, json, wait_timeout, connect_timeout, read
     A fast, efficient and asynchronous crawler to retrieve all url's on a page.
     """
 
+    output_obj = Output()
+    output_obj.print_logo()
+
     validator = Validator(url, threads, headers, output, json, wait_timeout, connect_timeout, read_timeout, force)
     validator.validate_data()
 
@@ -36,7 +39,6 @@ def cli(url, threads, headers, output, json, wait_timeout, connect_timeout, read
     runner.run_synchronous()
     urls = runner.get_urls()
 
-    output_obj = Output()
     output_obj.print_total_quantity_of_urls(len(urls))
 
 

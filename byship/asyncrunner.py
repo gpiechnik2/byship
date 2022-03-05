@@ -72,7 +72,6 @@ class AsyncRunner:
             await asyncio.gather(*request_list)
 
     def run_synchronous(self):
-        self.output.print_logo()
         self.output.print_info(self.url, self.domain, self.threads, self.headers, self.output_value, self.json, self.wait_timeout, self.connect_timeout, self.read_timeout, self.force)
         self.files.create_output_file(self.output_value)
         self.output.print_output_file_created(self.output_value)
