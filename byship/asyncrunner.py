@@ -31,8 +31,8 @@ class AsyncRunner:
         self.urls_to_crawl = []
         self.files = Files()
 
-    async def add_url_from_response(self, response, domain):
-        matches = get_urls_from_string(response)
+    async def add_url_from_response(self, response):
+        matches = get_urls_from_string(self.domain, response)
         for match in matches:
             match_http = get_https_url(match)
             if self.domain in match_http and match_http not in self.urls:
@@ -44,26 +44,28 @@ class AsyncRunner:
         if url in self.urls_to_crawl:
             self.urls_to_crawl.remove(url)
 
-    async def async_request(self, domain, url):
+    async def async_request(self, url):
         async with httpx.AsyncClient(limits=self.limits) as client:
             await self.delete_from_urls_to_crawl(url)
             try:
                 r = await client.get(url, follow_redirects=True, timeout=self.timeout, headers=self.headers)
-                await self.add_url_from_response(r.text, domain)
+                await self.add_url_from_response(r.text)
             except httpx.ReadTimeout:
                 self.output.print_timeout_exceed('read_timeout', self.read_timeout, url)
-            except https.ConnectTimeout:
+            except httpx.ConnectTimeout:
                 self.output.print_timeout_exceed('connect_timeout', self.connect_timeout, url)
+            except httpx.ConnectError:
+                pass
 
-    async def main(self, domain, url):
+    async def main(self, url):
         self.urls.append(url)
         self.files.append_url_to_output_file(url, self.output_value)
         self.urls_to_crawl.append(url)
         while len(self.urls_to_crawl) > 0:
             if len(self.urls_to_crawl) > 5:
-                request_list = [asyncio.create_task(self.async_request(domain, url)) for url in self.urls_to_crawl[:5]]
+                request_list = [asyncio.create_task(self.async_request(url)) for url in self.urls_to_crawl[:5]]
             else:
-                request_list = [asyncio.create_task(self.async_request(domain, url)) for url in self.urls_to_crawl[:len(self.urls_to_crawl)]]
+                request_list = [asyncio.create_task(self.async_request(url)) for url in self.urls_to_crawl[:len(self.urls_to_crawl)]]
             
             sleep(self.wait_timeout)
             await asyncio.gather(*request_list)
@@ -74,7 +76,7 @@ class AsyncRunner:
         self.files.create_output_file(self.output_value)
         self.output.print_output_file_created(self.output_value)
 
-        asyncio.run(self.main(self.domain, self.url))
+        asyncio.run(self.main(self.url))
     
     def get_urls(self):
         return self.urls

@@ -16,11 +16,11 @@ from byship.output import Output
               help='Results file name (default results.txt).')
 @click.option('--json/--no-json', '-j/-nj', default=False,
               help='Write output in JSON format (false by default)')
-@click.option('--wait-timeout', '-wt', type=str,
+@click.option('--wait-timeout', '-wt', type=int,
               help='Waiting time in seconds between threads_value requests (default 2s).')
-@click.option('--connect-timeout', '-ct', type=str,
+@click.option('--connect-timeout', '-ct', type=int,
               help='The maximum amount of time to wait until a socket connection to the requested host is established (default 10s).')
-@click.option('--read-timeout', '-rt', type=str,
+@click.option('--read-timeout', '-rt', type=int,
               help='The maximum duration to wait for a chunk of data to be received (for example, a chunk of the response body) (default 10s).')
 @click.option('--force/--no-force', '-f/-nf', default=False,
               help='Force running (false by default)')
@@ -28,6 +28,7 @@ def cli(url, threads, headers, output, json, wait_timeout, connect_timeout, read
     """byship
     A fast, efficient and asynchronous crawler to retrieve all url's on a page.
     """
+    print(output)
 
     validator = Validator(url, threads, headers, output, json, wait_timeout, connect_timeout, read_timeout, force)
     validator.validate_data()
@@ -36,8 +37,8 @@ def cli(url, threads, headers, output, json, wait_timeout, connect_timeout, read
     runner.run_synchronous()
     urls = runner.get_urls()
 
-    output = Output()
-    output.print_total_quantity_of_urls(len(urls))
+    output_obj = Output()
+    output_obj.print_total_quantity_of_urls(len(urls))
 
 
 if __name__ == '__main__':

@@ -56,13 +56,13 @@ class Output:
         print('{} [{}] {} {} {} {} {} {} {} {}'.format(
             self.purple('◉'),
             self.get_time(),
-            'url: {}{} '.format(self.purple(url), purple_semicolon),
-            'domain: {}{} '.format(self.purple(domain), purple_semicolon),
-            'headers: {}{} '.format(self.purple(headers), purple_semicolon),
-            'output: {}{} '.format(self.purple(output), purple_semicolon),
-            'json: {}{} '.format(self.purple(json), purple_semicolon),
-            'wait timeout: {} seconds{} '.format(self.purple(wait_timeout), purple_semicolon),
-            'connect timeout: {} seconds{} '.format(self.purple(connect_timeout), purple_semicolon),
+            'url: {}{}'.format(self.purple(url), purple_semicolon),
+            'domain: {}{}'.format(self.purple(domain), purple_semicolon),
+            'headers: {}{}'.format(self.purple(headers), purple_semicolon),
+            'output: {}{}'.format(self.purple(output), purple_semicolon),
+            'json: {}{}'.format(self.purple(json), purple_semicolon),
+            'wait timeout: {} seconds{}'.format(self.purple(wait_timeout), purple_semicolon),
+            'connect timeout: {} seconds{}'.format(self.purple(connect_timeout), purple_semicolon),
             'read timeout: {} seconds{}\n'.format(self.purple(read_timeout), purple_semicolon)
         ))
 

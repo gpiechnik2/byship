@@ -5,7 +5,7 @@ from byship.constants import Constants
 
 
 class Validator:
-    def __init__(self, url, threads, headers, json, output_value, wait_timeout, connect_timeout, read_timeout, force):
+    def __init__(self, url, threads, headers, output_value, json, wait_timeout, connect_timeout, read_timeout, force):
         self.constants = Constants()
         self.output = Output()
 
