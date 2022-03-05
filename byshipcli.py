@@ -32,7 +32,7 @@ def cli(url, threads, headers, output, json, wait_timeout, connect_timeout, read
     validator = Validator(url, threads, headers, output, json, wait_timeout, connect_timeout, read_timeout, force)
     validator.validate_data()
 
-    runner = AsyncRunner(url, threads, headers, output, json, wait_timeout, connect_timeout, read_timeout)
+    runner = AsyncRunner(url, threads, headers, output, json, wait_timeout, connect_timeout, read_timeout, force)
     runner.run_synchronous()
     urls = runner.get_urls()
 

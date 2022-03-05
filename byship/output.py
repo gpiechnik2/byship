@@ -38,6 +38,7 @@ class Output:
         )
     
     def print_logo(self):
+        print(" ")
         print(" {}                 __     __        ".format(self.purple('__')))
         print("{}--.--.-----.|  |--.|__|.-----.".format(self.purple('|  |--.')))
         print("{}  |  |__ --||     ||  ||  _  |".format(self.purple('|  _  |')))
@@ -51,9 +52,9 @@ class Output:
     def get_purple_semicolon(self):
         return self.purple(';')
 
-    def print_info(self, url, domain, threads, headers, output, json, wait_timeout, connect_timeout, read_timeout):
+    def print_info(self, url, domain, threads, headers, output, json, wait_timeout, connect_timeout, read_timeout, force):
         purple_semicolon = self.get_purple_semicolon()
-        print('{} [{}] {} {} {} {} {} {} {} {}'.format(
+        print('{} [{}] {} {} {} {} {} {} {} {} {}'.format(
             self.purple('◉'),
             self.get_time(),
             'url: {}{}'.format(self.purple(url), purple_semicolon),
@@ -63,7 +64,8 @@ class Output:
             'json: {}{}'.format(self.purple(json), purple_semicolon),
             'wait timeout: {} seconds{}'.format(self.purple(wait_timeout), purple_semicolon),
             'connect timeout: {} seconds{}'.format(self.purple(connect_timeout), purple_semicolon),
-            'read timeout: {} seconds{}\n'.format(self.purple(read_timeout), purple_semicolon)
+            'read timeout: {} seconds{}'.format(self.purple(read_timeout), purple_semicolon),
+            'force: {}{}\n'.format(self.purple(force), purple_semicolon)
         ))
 
     def print_timeout_exceed(self, timeout_type, timeout_value, url):
