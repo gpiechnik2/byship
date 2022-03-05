@@ -28,7 +28,6 @@ def cli(url, threads, headers, output, json, wait_timeout, connect_timeout, read
     """byship
     A fast, efficient and asynchronous crawler to retrieve all url's on a page.
     """
-    print(output)
 
     validator = Validator(url, threads, headers, output, json, wait_timeout, connect_timeout, read_timeout, force)
     validator.validate_data()
